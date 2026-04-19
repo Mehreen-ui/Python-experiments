@@ -16,3 +16,5 @@ if is_prime(num):
     print(f"{num} is a Prime Number")
 else:
     print(f"{num} is Not a Prime Number")
+
+#a Python program to analyze the input number is prime or not.
