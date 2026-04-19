@@ -1,0 +1,93 @@
+# Product Class
+class Product:
+    def __init__(self, name, price, stock):
+        self.name = name
+        self.price = price
+        self.stock = stock
+
+    def reduce_stock(self, quantity):
+        if quantity <= self.stock:
+            self.stock -= quantity
+            return True
+        return False
+
+
+# Customer Class
+class Customer:
+    def __init__(self, name):
+        self.name = name
+
+
+# Shopping Cart Class
+class ShoppingCart:
+    def __init__(self):
+        self.items = {}  # {product: quantity}
+
+    def add_item(self, product, quantity):
+        if product.stock >= quantity:
+            self.items[product] = self.items.get(product, 0) + quantity
+            print(f"{quantity} x {product.name} added to cart")
+        else:
+            print(f"Not enough stock for {product.name}")
+
+    def calculate_total(self):
+        total = 0
+        for product, qty in self.items.items():
+            total += product.price * qty
+        return total
+
+    def checkout(self):
+        total = self.calculate_total()
+        print("\nProcessing Order...")
+        
+        for product, qty in self.items.items():
+            if not product.reduce_stock(qty):
+                print(f"Order failed: {product.name} out of stock")
+                return
+        
+        print("Order successful!")
+        print("Total amount:", total)
+        self.items.clear()
+
+
+# Inventory (simple list of products)
+class Inventory:
+    def __init__(self):
+        self.products = []
+
+    def add_product(self, product):
+        self.products.append(product)
+
+    def show_products(self):
+        print("\nAvailable Products:")
+        for p in self.products:
+            print(f"{p.name} - ₹{p.price} (Stock: {p.stock})")
+
+
+# ----------- Main Program -----------
+# Create inventory and products
+inventory = Inventory()
+p1 = Product("Laptop", 50000, 5)
+p2 = Product("Phone", 20000, 10)
+
+inventory.add_product(p1)
+inventory.add_product(p2)
+
+inventory.show_products()
+
+# Create customer and cart
+customer = Customer("Rahul")
+cart = ShoppingCart()
+
+# Add items to cart
+cart.add_item(p1, 1)
+cart.add_item(p2, 2)
+
+# Show total
+print("Total Cost:", cart.calculate_total())
+
+# Checkout
+cart.checkout()
+
+# Show updated stock
+inventory.show_products()
