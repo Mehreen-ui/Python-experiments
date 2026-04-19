@@ -1,0 +1,30 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# -------- Create Sample Data --------
+data = {
+    "Name": ["A", "B", "C", "D", "E"],
+    "Marks": [85, 90, 78, 92, 88],
+    "Age": [20, 21, 19, 22, 20]
+}
+
+df = pd.DataFrame(data)
+
+# -------- Display Data --------
+print("Dataset:\n", df)
+
+# -------- Basic Analysis --------
+print("\nAverage Marks:", df["Marks"].mean())
+print("Maximum Marks:", df["Marks"].max())
+print("Minimum Marks:", df["Marks"].min())
+
+# -------- Filtering --------
+print("\nStudents with Marks > 85:\n", df[df["Marks"] > 85])
+
+# -------- Plotting --------
+plt.plot(df["Name"], df["Marks"], marker='o')
+plt.title("Student Marks Analysis")
+plt.xlabel("Students")
+plt.ylabel("Marks")
+
+plt.show()
