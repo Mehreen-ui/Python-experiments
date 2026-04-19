@@ -1,1 +1,27 @@
+# Program to calculate area of a rectangle
 
+# Taking input from user
+length = float(input("Enter length: "))
+breadth = float(input("Enter breadth: "))
+
+# Calculating area
+area = length * breadth
+
+# Display result
+print("Area of rectangle is:", area)
+
+
+# -------- EXE CREATION STEPS --------
+# 1. Install PyInstaller:
+#    pip install pyinstaller
+#
+# 2. Go to your file location:
+#    cd path_to_file
+#
+# 3. Create executable:
+#    pyinstaller --onefile filename.py
+#
+# 4. Open 'dist' folder:
+#    You will get filename.exe
+#
+# 5. Run the .exe file
