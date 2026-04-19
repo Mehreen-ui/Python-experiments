@@ -1,0 +1,27 @@
+def get_words_by_length(filename, length):
+    try:
+        with open(filename, 'r') as file:
+            content = file.read()
+            
+            # Split content into words
+            words = content.split()
+            
+            # Filter words by length
+            result = [word for word in words if len(word) == length]
+            
+            return result
+
+    except FileNotFoundError:
+        print("File not found.")
+        return []
+
+
+# Main program
+filename = input("Enter file name: ")
+length = int(input("Enter desired word length: "))
+
+words = get_words_by_length(filename, length)
+
+print(f"Words with length {length}:")
+for w in words:
+    print(w)
